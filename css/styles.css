@@ -18,12 +18,12 @@ body{font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Go
 .hero{
   position:relative;
   display:grid;
-  grid-template-columns: 1fr 40%; /* 左:コンテンツ / 右:画像 */
+  grid-template-columns: 1fr 40%; /* 左側コンテンツ / 画像幅 */
   grid-template-rows: 3fr 1fr; /* 上:下 = 3:1 */
   min-height:360px;
   margin-top:18px;
   border-radius:12px;
-  overflow:hidden;
+  overflow:hidden; /* 角丸を効かせる */
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
@@ -37,20 +37,21 @@ body{font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Go
 .hero-bottom{grid-row:2/3}
 .hero-bottom p{margin:0;font-size:1.05rem}
 
-/* show hero as a right-side background (pseudo-element) */
+/* hero: image on right spanning both rows (pseudo-element) */
 .hero::after{
   content: "";
   position:absolute;
   top:0;right:0;bottom:0;
-  width:40%;
-  background-image: url('images/hero.jpeg');
-  background-size:cover;
+  width:40%; /* same as grid column */
+  background-image: url('../images/hero.jpeg');
+  background-size: cover;
   /* 画像をより右側に寄せて人物の顔が見えるように調整 */
-  background-position:90% center;
+  background-position: 85% center;
   opacity:0.85; /* less transparent so face is clearer */
   pointer-events:none;
   z-index:1;
 }
+/* レスポンシブ */
 @media (max-width: 640px){
   .hero{min-height:320px;grid-template-columns:1fr;grid-template-rows:auto auto auto}
   .hero-panel{padding:24px}
